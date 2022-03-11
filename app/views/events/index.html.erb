@@ -1,1 +1,14 @@
-<h1>Events</h1>
+<div class="section">
+    <div class="container">
+        <div class="columns is-centred">
+            <div class="column is-half">
+                <h1 class="title">Current events</h1>
+                <% @events.each do |event| %>
+                    <div class="content is-medium"><%= event.dateTime %></div>
+                    <div class="content is-medium"><%= event.location %></div>
+                    <div class="content is-medium">Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
