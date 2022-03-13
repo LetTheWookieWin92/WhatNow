@@ -1,7 +1,11 @@
 <nav>
+    <%= link_to "WhatNow", root_path %>
     <% if user_signed_in? %>
         <span class="nav-greeting"><%= "Welcome back, #{current_user.firstName}" %></span>
+        <%= link_to "Profile", profile_path(current_user.id) %>
+        <%= link_to "Account", edit_user_registration_path %>
         <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+        
     <% else %>
         <%= link_to "Sign in", new_user_session_path %>
         <%= link_to "Sign up", new_user_registration_path %>
