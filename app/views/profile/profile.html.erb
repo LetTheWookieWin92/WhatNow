@@ -1,0 +1,26 @@
+<div class="section">
+    <div class="container">
+        <div class="columns is-centred">
+            <div class="column is-half">
+                <h1 class="title"><%= current_user.firstName %>'s events</h1>
+                <% current_user.organised_events.each do |event| %>
+                    <div class="content is-medium"><%= event.dateTime %></div>
+                    <div class="content is-medium"><%= event.location %></div>
+                    <div class="content is-medium">Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class = "navbar">
+    <div class="navbar-menu">
+        <div class="navbar-item">
+            <div class="field is-grouped">
+                <p class="control">
+                    <% link_to "Organise a new event", new_event_path, class: "button is-dark" %>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>
