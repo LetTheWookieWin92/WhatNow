@@ -7,11 +7,16 @@
                     <div class="content is-medium"><%= event.dateTime %></div>
                     <div class="content is-medium"><%= event.location %></div>
                     <div class="content is-medium">Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
+
                     <% if current_user && event.organiser != current_user && !event.event_registrations.include?(current_user) %>
-                        <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => event.id), method: :post, class: "button is-info" %>
-                    <% else %>
+                        <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => event.id), method: :post %>
+
+                    <%elsif  current_user && event.organiser != current_user && event.event_registrations.include?(current_user) %>
                         <div>You have registered for the event</div>
+                        <%= link_to "Remove from my events", destroy_attendee_path(:user_id => current_user.id, :id => event.id), method: :delete, data: { confirm: "Please confirm if you would like to remove this from your events" } %>
+
                     <% end %>
+                    
                     <%= link_to "Event information", event_path(event.id) %>
                     <br/>
                 <% end %>

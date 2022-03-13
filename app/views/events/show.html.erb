@@ -3,11 +3,11 @@
         <div class="columns is-centred">
             <div class="column is-half">
                 <h1 class="title">Event View</h1>
-                <div class="content is-medium"><%= @event.dateTime %></div>
-                <div class="content is-medium"><%= @event.location %></div>
-                <div class="content is-medium">Organised by: <%= @event.organiser.firstName %> <%= @event.organiser.surname %></div>
+                <div><%= @event.dateTime %></div>
+                <div><%= @event.location %></div>
+                <div>Organised by: <%= @event.organiser.firstName %> <%= @event.organiser.surname %></div>
                 <% if current_user && @event.organiser != current_user && !@event.event_registrations.include?(current_user) %>
-                    <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => @event.id), method: :post, class: "button is-info" %>
+                    <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => @event.id), method: :post %>
                 <% else %>
                     <div>You have registered for the event</div>
                 <% end %>
