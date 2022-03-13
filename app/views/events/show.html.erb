@@ -13,6 +13,14 @@
                 <% end %>
                 <br/>
 
+                <% if current_user == @event.organiser %>
+                    <% puts @event.id %>
+                    <%= link_to "Update", edit_event_path(@event.id) %>
+                    <%= link_to "Delete", event_path(@event.id), method: :delete, data: { confirm: "Please confirm if you would like to delete this event" } %>
+                <% else %>
+                    
+                <% end %>
+
                 <h2>Attendees</h2>
                 <% @event.event_registrations.each do |attendee| %>
                     <div><%= attendee.firstName %> <%= attendee.surname %></div>
