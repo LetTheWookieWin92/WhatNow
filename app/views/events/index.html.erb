@@ -2,11 +2,12 @@
     <div class="container">
         <div class="columns is-centred">
             <div class="column is-half">
-                <h1 class="title">Current events</h1>
-                <% @events.each do |event| %>
-                    <div class="content is-medium"><%= event.dateTime %></div>
-                    <div class="content is-medium"><%= event.location %></div>
-                    <div class="content is-medium">Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
+                <h1 class="title">Upcoming events</h1>
+                <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now }%>%
+                <% upcomingEvents.each do |event| %>
+                    <div><%= event.dateTime %></div>
+                    <div><%= event.location %></div>
+                    <div>Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
 
                     <% if current_user && event.organiser != current_user && !event.event_registrations.include?(current_user) %>
                         <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => event.id), method: :post %>

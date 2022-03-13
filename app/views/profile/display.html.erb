@@ -3,11 +3,17 @@
         <div class="columns is-centred">
             <div class="column is-half">
                 <h1 class="title"><%= current_user.firstName %>'s events</h1>
+                <h2>Organiser</h2>
                 <% current_user.organised_events.each do |event| %>
-                    <div class="content is-medium"><%= event.dateTime %></div>
-                    <div class="content is-medium"><%= event.location %></div>
-                    <div class="content is-medium">Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
+                    <div><%= event.dateTime %></div>
+                    <div><%= event.location %></div>
+                    <div>Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
                 <% end %>
+
+                <h2>Attending</h2>
+
+
+                <h2>Past</h2>
             </div>
         </div>
     </div>
