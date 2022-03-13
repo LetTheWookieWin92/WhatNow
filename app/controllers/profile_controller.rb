@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
 
-    def show
+    def display
 
     end
-    
+
 end

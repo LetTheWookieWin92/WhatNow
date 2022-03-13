@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     devise_for :users, :controllers => { registrations: "devise/registrations" }
     resources :events
     
-    get 'profile/:id', to: 'profile#show', as: "profile"
+    # Route for user profile
+    get 'profile/:id', to: 'profile#display', as: "profile"
 
 end
