@@ -3,7 +3,7 @@
         <div class="columns is-centred">
             <div class="column is-half">
                 <h1 class="title">Upcoming events</h1>
-                <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now }%>%
+                <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now } %>
                 <% upcomingEvents.each do |event| %>
                     <div><%= event.dateTime %></div>
                     <div><%= event.location %></div>
