@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_13_075945) do
+ActiveRecord::Schema.define(version: 2022_03_15_093906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,6 @@ ActiveRecord::Schema.define(version: 2022_03_13_075945) do
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.string "title", limit: 75
     t.string "description", limit: 750
@@ -40,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_03_13_075945) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "organiser_id", null: false
+    t.string "category"
     t.index ["organiser_id"], name: "index_events_on_organiser_id"
   end
 

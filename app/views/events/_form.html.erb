@@ -1,13 +1,38 @@
 <%= form_for(@event) do |f|  %>
 
     <div class="field">
+        <%= f.label "Title" %> <br />
+        <%= f.text_field :title, autofocus: true, require: true %>
+    </div>
+
+    <div class="field">
         <%= f.label "Date / time" %> <br />
-        <%= f.datetime_select :dateTime, :ampm => true, :minute_step => 15 %>
+        <%= f.datetime_select :dateTime, :ampm => true, :minute_step => 15, require: true %>
     </div>
 
     <div class="field">
         <%= f.label :location %> <br />
-        <%= f.text_field :location, autofocus: true %>
+        <%= f.text_field :location , require: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Maximum capacity" %> <br />
+        <%= f.number_field :capacity, :min => 1, :step => 1, require: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Price" %> <br />
+        <%= f.number_field :price, :step => 1, require: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Categories" %> <br />
+        <%= f.select :category, ['Corporate', 'Fundraising', 'Conference', 'Class / Workshop', 'Sport', 'Fandom', 'Festival / Fair', 'Food / Drink', 'Networking', 'Hackathon', 'Awards / Competition', 'Party', 'VIP'] , require: true %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Description" %> <br />
+        <%= f.text_field :description, require: true %>
     </div>
 
     <div class="actions">
