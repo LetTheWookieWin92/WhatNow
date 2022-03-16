@@ -11,7 +11,11 @@
                 <% end %>
 
                 <h2>Attending</h2>
-
+                <% current_user.event_attendances.each do |event| %>
+                    <div><%= event.dateTime %></div>
+                    <div><%= event.location %></div>
+                    <div>Organised by: <%= event.organiser.firstName %> &nbsp; <%= event.organiser.surname %></div>
+                <% end %>
 
                 <h2>Past</h2>
             </div>
@@ -24,8 +28,8 @@
         <div class="navbar-item">
             <div class="field is-grouped">
                 <p class="control">
-                    <%= link_to "Organise a new event", new_event_path, class: "button is-dark" %>
-                    <%= link_to "Show event registrations",show_event_attendances_path, class: "button is-dark" %>
+                    <%= link_to "Organise a new event", new_event_path %>
+
                 </p>
             </div>
         </div>

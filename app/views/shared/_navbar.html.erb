@@ -1,13 +1,31 @@
-<nav>
-    <%= link_to "WhatNow", root_path %>
+<nav class="nav-all">
+    <a href="<%= root_path %>">
+        <img src="<%= asset_path('Logo.png')%>" width="200" alt="logo">
+    </a>
     <% if user_signed_in? %>
-        <span class="nav-greeting"><%= "Welcome back, #{current_user.firstName}" %></span>
-        <%= link_to "Profile", profile_path(current_user.id) %>
-        <%= link_to "Account", edit_user_registration_path %>
-        <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-        
+        <nav>
+            <div class="nav-button-box">
+                <%= "Welcome back, #{current_user.firstName}!" %>
+            </div>
+            <div class="nav-button-box">
+                <%= link_to "Profile", profile_path(current_user.id), class: "button-link" %>
+            </div>
+            <div class="nav-button-box">
+                <%= link_to "Account", edit_user_registration_path, class: "button-link" %>
+            </div>
+            <div class="nav-button-box">
+                <%= link_to "Sign out", destroy_user_session_path, method: "delete", class: "button-link" %>
+            </div>
+        </nav> 
     <% else %>
-        <%= link_to "Sign in", new_user_session_path %>
-        <%= link_to "Sign up", new_user_registration_path %>
+        <nav>
+            <div class="nav-button-box">
+                <%= link_to "Sign in", new_user_session_path, class: "button-link" %>
+            </div>
+            <div class="nav-button-box">
+                <%= link_to "Sign up", new_user_registration_path, class: "button-link" %>
+            </div>
+        </nav>
     <% end %>
 </nav>
+
