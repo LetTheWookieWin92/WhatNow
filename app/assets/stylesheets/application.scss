@@ -54,3 +54,84 @@ nav {
     }
   }
 }
+
+.card-collection {
+  //Defines the section as a full width area
+  width: 100%;
+
+  // Centres the cards horizontally
+  @include flexCenter(space-evenly);
+
+  //Aligns the text div at the top of the cross axis
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  // Extra spacing at the bottom of the page
+  padding-bottom: 10px;
+}
+
+// Reusable blog card
+.event-card {
+  width: 300px;
+  height: 350px;
+  margin: 10px;
+  position: relative;
+
+  // Gives it a card aesthetic
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+
+  // Sets font family for all the children
+  font-family: "Trebuchet MS", Arial, sans-serif;
+
+  .card-image {
+    height: 100px;
+    width: 300px;
+    margin-left: 0;
+    position: absolute;
+    background-color: grey;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    padding: 1px;
+  }
+
+  .card-title {
+    margin-top: 90px;
+    margin-left: 10px;
+    position: absolute;
+
+    .event-title {
+      font-size: 16pt;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .event-location {
+      font-size: 13pt;
+      color: grey;
+    }
+
+    .event-organiser {
+      font-size: 9pt;
+      color: black;
+    }
+
+    // Different text style for date, less prominent
+    .event-date {
+      margin-top: 0px;
+      margin-bottom: 10px;
+      font-size: 11pt;
+      font-weight: bold;
+      color: rgb(255, 108, 68);
+    }
+
+    .event-description {
+      font-size: 9pt;
+    }
+  }
+}
