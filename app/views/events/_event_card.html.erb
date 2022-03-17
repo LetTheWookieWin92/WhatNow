@@ -1,7 +1,12 @@
 <div class="event-card">
     <div class="card-image-container">
-            <img class="card-image">
-        </div>
+        <% if event.picture.attached? %>
+            <%= image_tag event.picture, class: "card-image" %>
+        <% else %>
+            <img class="card-image" src="<%= asset_path('No_Image.png')%>" width="100" height="100" alt="Picture"/>
+        <% end %>
+        
+    </div>
     <div class="card-title">
         <p class="event-title"><%= truncate(event.title, :length => 25) %></p>
         <p class="event-organiser"><%= event.organiser.firstName %> <%= event.organiser.surname %></p>

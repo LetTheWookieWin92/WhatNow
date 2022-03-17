@@ -39,7 +39,8 @@ class EventsController < ApplicationController
             :location,
             :price,
             :capacity,
-            :category
+            :category,
+            :picture
         )
     end
 

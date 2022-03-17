@@ -35,6 +35,11 @@
         <%= f.text_field :description, require: true %>
     </div>
 
+    <div class="field">
+        <%= f.label "Image" %> <br />
+        <%= f.file_field :picture, accept: 'image/png, image/jpb, image/jpeg' %>
+    </div>
+
     <div class="actions">
         <%= f.submit "Submit" %>
     </div>

@@ -5,6 +5,6 @@ class Event < ApplicationRecord
 
     has_many :attendees
     has_many :event_registrations, through: :attendees, source: :user
-
+    has_one_attached :picture
 
 end
