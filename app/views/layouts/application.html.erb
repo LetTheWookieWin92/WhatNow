@@ -13,9 +13,12 @@
     <%= render "shared/navbar" %>
 
     <!--Devise authentication flash messages-->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+    <div class="notice-styled">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+    </div>
+    
     <%= yield %>
+    
   </body>
 </html>

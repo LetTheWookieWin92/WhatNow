@@ -1,40 +1,54 @@
-<div class="section">
-    <div class="container">
-        <div>
-            <div>
-                <h1 class="title">Event View</h1>
-
-                <div><%= @event.dateTime %></div>
-                <div><%= @event.location %></div>
-                <div>Organised by: <%= @event.organiser.firstName %> <%= @event.organiser.surname %></div>
-
-                <% if current_user && @event.organiser != current_user && !@event.event_registrations.include?(current_user) %>
-                    <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => @event.id), method: :post %>
-
-                <%elsif  current_user && @event.organiser != current_user && @event.event_registrations.include?(current_user) %>
-                    <div>You have registered for the event</div>
-                    <%= link_to "Remove from my events", destroy_attendee_path(:user_id => current_user.id, :id => @event.id), method: :delete, data: { confirm: "Please confirm if you would like to remove this from your events" } %>
-
-                <% end %>
-
-
-                <% if current_user == @event.organiser %>
-                    <% puts @event.id %>
-                    <%= link_to "Update", edit_event_path(@event.id) %>
-                    <%= link_to "Delete", event_path(@event.id), method: :delete, data: { confirm: "Please confirm if you would like to delete this event" } %>
-                <% else %>
-                    
-                <% end %>
-
-                <h2>Attendees</h2>
-                <% @event.event_registrations.each do |attendee| %>
-                    <div><%= attendee.firstName %> <%= attendee.surname %></div>
-                <% end %>
-                <br/>
-                <br/>
-                <%= link_to "Back", events_path %>
-                
-            </div>
+<a class="back-button" href="<%= events_path %>">
+    <img src="<%= asset_path('Back.png')%>" width="18" height="18" alt="back">
+    Back to events
+</a>
+<div class="view-area">
+    <div class="event-view">
+        <div class="view-image-container">
+            <img class="view-image">
         </div>
+        <div class="view-details">
+            <p class="view-title"><%= truncate(@event.title, :length => 50) %></p>
+            <p class="view-organiser">Brought to you by <%= @event.organiser.firstName %> <%= @event.organiser.surname %></p>
+            <p class="view-date"><%= @event.dateTime.strftime("%a, %b %d, %H:%M") %></p>
+            <p class="view-location"><%= @event.location %></p>
+            <p class="view-category"><%= @event.category %></p>
+            <p class="view-description"><%= @event.description %></p>
+        </div>
+        <div class="event-button-collection">
+
+            <% if current_user && @event.organiser != current_user && !@event.event_registrations.include?(current_user) %>
+                <button type="button" class="event-view-button"><%= link_to "Buy ticket for $", create_attendee_path(:user_id => current_user.id, :id => @event.id), method: :post , style: "text-decoration: none; color: black;"%><%= @event.price.to_f/100 %></button>
+
+            <%elsif  current_user && @event.organiser != current_user && @event.event_registrations.include?(current_user) %>
+                <button type="button" class="event-view-button"><%= link_to "Remove from my events", destroy_attendee_path(:user_id => current_user.id, :id => @event.id), method: :delete, data: { confirm: "Please confirm if you would like to remove this from your events" }, style: "text-decoration: none; color: black;"%></button>
+
+            <% end %>
+
+            
+            <% if current_user == @event.organiser %>
+                <% puts @event.id %>
+                <button type="button" class="event-view-button"><%= link_to "Edit event", edit_event_path(@event.id) , style: "text-decoration: none; color: black;"%></button>
+                <button type="button" class="event-view-button"><%= link_to "Cancel event", event_path(@event.id), method: :delete, data: { confirm: "Are you sure you want to cancel this event? This action is not reversable" } , style: "text-decoration: none; color: black;"%></button>
+            <% else %>
+                
+            <% end %>
+
+        </div>
+        <div class="view-details">
+            <% if current_user == @event.organiser %>
+                <p class="view-attendees-title">Attendees</h2>
+                <%if @event.event_registrations.count == 0 %>
+                    <h2>This event has no registrations so far.</h2>
+                <% else %>
+                    <% @event.event_registrations.each do |attendee| %>
+                        <p class="view-attendees-name"><%= attendee.firstName %> <%= attendee.surname %></p>
+                    <% end %>
+                <% end %>
+                
+            <% end %>
+
+        </div>
+        
     </div>
 </div>

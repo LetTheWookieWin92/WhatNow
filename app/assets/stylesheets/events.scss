@@ -1,3 +1,167 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@mixin flexCenter($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
+// Event view
+.view-area {
+  //Defines the section as a full width area
+  width: 100%;
+
+  // Centres the cards horizontally
+  @include flexCenter(center);
+
+  //Aligns the div at the top of the cross axis
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  // Extra spacing at the bottom of the page
+  padding-bottom: 10px;
+}
+
+// Event view
+.event-view {
+  margin: 10px;
+
+  @media screen and (max-width: 599px) {
+    width: 350px;
+  }
+
+  @media only screen and (min-width: 600px) {
+    width: 500px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 700px;
+  }
+
+  @media only screen and (min-width: 992px) {
+    width: 750px;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    width: 750px;
+  }
+
+  // Gives it a card aesthetic
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+
+  // Sets font family for all the children
+  font-family: "Trebuchet MS", Arial, sans-serif;
+
+  .view-image-container {
+    @include flexCenter(center);
+  }
+
+  .view-image {
+    height: 150px;
+    width: 150px;
+    margin: 10px;
+    background-color: grey;
+    border-radius: 5px;
+  }
+
+  .view-details {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+
+    .view-title {
+      margin-top: 0px;
+
+      text-align: center;
+      font-size: 20pt;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .view-location {
+      font-size: 10pt;
+      color: grey;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .view-organiser {
+      text-align: center;
+      font-size: 10pt;
+      color: black;
+      margin-top: 0px;
+      margin-bottom: 10px;
+    }
+
+    .view-category {
+      font-size: 10pt;
+      color: black;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .view-date {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 11pt;
+      font-weight: bold;
+      color: rgb(255, 108, 68);
+      text-align: center;
+    }
+
+    .view-description {
+      font-size: 10pt;
+      text-align: center;
+    }
+
+    .view-attendees-title {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 15pt;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .view-attendees-name {
+      font-size: 11pt;
+      color: black;
+      text-align: center;
+      margin-bottom: 0px;
+    }
+  }
+
+  .event-button-collection {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    // Centres the cards horizontally
+    @include flexCenter(center);
+
+    //Aligns the text div at the top of the cross axis
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    // Extra spacing at the bottom of the page
+    padding-bottom: 10px;
+  }
+
+  .event-view-button {
+    border: none;
+    background-color: rgb(255, 108, 68);
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+    height: 40px;
+    min-width: 200px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}

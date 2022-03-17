@@ -1,13 +1,13 @@
 <div class="event-card">
-    <img class="card-image">
+    <div class="card-image-container">
+            <img class="card-image">
+        </div>
     <div class="card-title">
-        <p class="event-title"><%= truncate(event.title, :length => 50) %></p>
+        <p class="event-title"><%= truncate(event.title, :length => 25) %></p>
         <p class="event-organiser"><%= event.organiser.firstName %> <%= event.organiser.surname %></p>
         <p class="event-date"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></p>
-        <p class="event-location"><%= event.location %></p>
+        <p class="event-location"><%= truncate(event.location, :length => 40) %></p>
         <p class="event-category"><%= event.category %></p>
-        
-        <!-- <p class="event-description"><%= truncate(event.description, :length => 50) %></p> -->
     </div>
     <button type="button" class="button-block"><%= link_to "View event", event_path(event.id) , style: "text-decoration: none; color: black;"%></button>
 

@@ -7,7 +7,7 @@ class AttendeesController < ApplicationController
     def create
         @event = Event.find(params[:id])
         @event.event_registrations << current_user
-        flash[:notice] = "You have registered for the event"
+        flash[:notice] = "Event registration complete!"
 
         redirect_to root_path
     end
