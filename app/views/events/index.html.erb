@@ -10,15 +10,7 @@
                 <section class="card-collection">
                     <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now } %>
                     <% upcomingEvents.each do |event| %>
-
-                    <%= render 'event_card', :event => event, :current_user => current_user %>
-
-                        <div><%= event.price %></div>
-                        <div><%= event.capacity %></div>
-                        <div><%= event.category %></div>
-
-
-                        <br/>
+                        <%= render 'event_card', :event => event, :current_user => current_user %>
                     <% end %>
                 </section>
 

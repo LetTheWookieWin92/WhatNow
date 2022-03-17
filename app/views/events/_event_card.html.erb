@@ -2,25 +2,13 @@
     <img class="card-image">
     <div class="card-title">
         <p class="event-title"><%= truncate(event.title, :length => 50) %></p>
+        <p class="event-organiser"><%= event.organiser.firstName %> <%= event.organiser.surname %></p>
         <p class="event-date"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></p>
         <p class="event-location"><%= event.location %></p>
-        <p class="event-organiser"><%= event.organiser.firstName %> <%= event.organiser.surname %></p>
-        <%= link_to "Details", event_path(event.id) %>
-
- 
-
-
+        <p class="event-category"><%= event.category %></p>
+        
         <!-- <p class="event-description"><%= truncate(event.description, :length => 50) %></p> -->
-
-
-        <% if current_user && event.organiser != current_user && !event.event_registrations.include?(current_user) %>
-            <%= link_to "Join event", create_attendee_path(:user_id => current_user.id, :id => event.id), method: :post %>
-
-        <%elsif  current_user && event.organiser != current_user && event.event_registrations.include?(current_user) %>
-            <div>You have registered for the event</div>
-            <%= link_to "Remove from my events", destroy_attendee_path(:user_id => current_user.id, :id => event.id), method: :delete, data: { confirm: "Please confirm if you would like to remove this from your events" } %>
-
-        <% end %>
     </div>
+    <button type="button" class="button-block"><%= link_to "View event", event_path(event.id) , style: "text-decoration: none; color: black;"%></button>
 
 </div>
