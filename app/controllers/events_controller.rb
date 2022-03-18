@@ -29,6 +29,31 @@ class EventsController < ApplicationController
         @event= Event.find(params[:id])
     end
 
+    def update
+        @event= Event.find(params[:id])
+        if @event.update(event_params)
+            flash[:success] = "Event updated"
+            redirect_to root_path
+        else
+            @event.errors.full_messages.each do |message|
+            flash[:error] = message
+            end
+            render :edit
+        end
+    end
+
+    def destroy
+        @event= Event.find(params[:id])
+        if @event.organiser != current_user
+            flash[:error] = "Only the organiser of this event can cancel it"
+            redirect_to root_path
+        else
+            @event.destroy
+            flash[:success] = "Event has been cancelled"
+            redirect_to events_path
+        end
+    end
+
     private
 
     def event_params

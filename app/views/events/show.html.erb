@@ -5,7 +5,11 @@
 <div class="view-area">
     <div class="event-view">
         <div class="view-image-container">
-            <img class="view-image">
+            <% if @event.picture.attached? %>
+                <%= image_tag event.picture, class: "view-image" %>
+            <% else %>
+                <img class="view-image" src="<%= asset_path('No_Image.png')%>" width="150" height="150" alt="Picture"/>
+            <% end %>
         </div>
         <div class="view-details">
             <p class="view-title"><%= truncate(@event.title, :length => 50) %></p>
