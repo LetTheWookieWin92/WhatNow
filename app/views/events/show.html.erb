@@ -6,7 +6,7 @@
     <div class="event-view">
         <div class="view-image-container">
             <% if @event.picture.attached? %>
-                <%= image_tag event.picture, class: "view-image" %>
+                <%= image_tag(event.picture, class: "view-image") %>
             <% else %>
                 <img class="view-image" src="<%= asset_path('No_Image.png')%>" width="150" height="150" alt="Picture"/>
             <% end %>
@@ -43,7 +43,7 @@
             <% if current_user == @event.organiser %>
                 <p class="view-attendees-title">Attendees</h2>
                 <%if @event.event_registrations.count == 0 %>
-                    <h2>This event has no registrations so far.</h2>
+                    <p class="view-attendees-name">This event has no registrations so far.</p>
                 <% else %>
                     <% @event.event_registrations.each do |attendee| %>
                         <p class="view-attendees-name"><%= attendee.firstName %> <%= attendee.surname %></p>
