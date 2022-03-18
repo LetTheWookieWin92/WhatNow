@@ -8,6 +8,12 @@
                 <%= "Welcome back, #{current_user.firstName}!" %>
             </div>
             <div class="nav-button-box">
+                <%= link_to "Organise a new event", new_event_path, class: "button-link" %>
+            </div>
+            <div class="nav-button-box">
+                <%= link_to "View all events", root_path, class: "button-link" %>
+            </div>
+            <div class="nav-button-box">
                 <%= link_to "Profile", profile_path(current_user.id), class: "button-link" %>
             </div>
             <div class="nav-button-box">
