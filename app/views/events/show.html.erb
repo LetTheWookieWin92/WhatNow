@@ -41,7 +41,7 @@
         </div>
         <div class="view-details">
             <% if current_user == @event.organiser %>
-                <p class="view-attendees-title">Attendees</h2>
+                <p class="view-attendees-title">Attendees</p>
                 <%if @event.event_registrations.count == 0 %>
                     <p class="view-attendees-name">This event has no registrations so far.</p>
                 <% else %>
