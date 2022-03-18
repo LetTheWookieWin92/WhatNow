@@ -6,7 +6,7 @@
     <div class="event-view">
         <div class="view-image-container">
             <% if @event.picture.attached? %>
-                <%= image_tag(event.picture, class: "view-image") %>
+                <%= image_tag(@event.picture, class: "view-image") %>
             <% else %>
                 <img class="view-image" src="<%= asset_path('No_Image.png')%>" width="150" height="150" alt="Picture"/>
             <% end %>
