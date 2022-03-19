@@ -1,21 +1,14 @@
 <%= stylesheet_link_tag 'events' %>
 
-<div class="section">
-    <div class="container">
-        <div class="columns is-centred">
-            <div class="column is-half">
-                <h1 class="page-title">Coming up</h1>
 
-                <!--Reusable container to house a collection of cards-->
-                <section class="card-collection">
-                    <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now } %>
-                    <% upcomingEvents.each do |event| %>
-                        <%= render 'event_card', :event => event, :current_user => current_user %>
-                    <% end %>
-                </section>
-
-                
-            </div>
-        </div>
-    </div>
-</div>
+<section class="card-collection">
+    <% if @events.count == 0 %>
+        <p style="margin-top: 30px;">There are no events coming up</p>
+    <% else %>
+        <h1 class="page-title">Coming up</h1>
+        <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now } %>
+        <% upcomingEvents.each do |event| %>
+            <%= render 'event_card', :event => event, :current_user => current_user %>
+        <% end %>
+    <% end %>
+</section>

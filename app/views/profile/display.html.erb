@@ -6,14 +6,24 @@
         <div class="view-details">
             <p class="view-title"><%= current_user.firstName %> <%= current_user.surname %></p>
             <p class="view-subtitle">Your events</p>
-            <% current_user.organised_events.each do |event| %>
-                <p class="view-event"><span style="font-weight: bold; color: rgb(255, 108, 68);"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></span> - <%= event.title %> - <%= link_to "View event", event_path(event.id) , style: "text-decoration: underline; color: black;"%>
-                </p>
+            <% if current_user.organised_events.count == 0 %>
+                <p style="margin-top: 10px;">You have not organised any events</p>
+            <% else %>
+                <% current_user.organised_events.each do |event| %>
+                    <p class="view-event"><span style="font-weight: bold; color: rgb(255, 108, 68);"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></span> - <%= event.title %> - <%= link_to "View event", event_path(event.id) , style: "text-decoration: underline; color: black;"%>
+                    </p>
+                <% end %>
             <% end %>
+            
             <p class="view-subtitle">Events you've registered for</p>
-            <% current_user.event_attendances.each do |event| %>
-                <p class="view-event"><span style="font-weight: bold; color: rgb(255, 108, 68);"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></span> - <%= event.title %> - <%= link_to "View event", event_path(event.id) , style: "text-decoration: underline; color: black;"%></p>
+            <% if current_user.event_attendances.count == 0 %>
+                <p style="margin-top: 10px;">You have not registered for any events</p>
+            <% else %>
+                <% current_user.event_attendances.each do |event| %>
+                    <p class="view-event"><span style="font-weight: bold; color: rgb(255, 108, 68);"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></span> - <%= event.title %> - <%= link_to "View event", event_path(event.id) , style: "text-decoration: underline; color: black;"%></p>
+                <% end %>
             <% end %>
+            
         </div>       
     </div>
 </div>
