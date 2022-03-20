@@ -1,38 +1,55 @@
+<!-- Event detail view -->
+
 <a class="back-button" href="<%= events_path %>">
     <img src="<%= asset_path('Back.png')%>" width="18" height="18" alt="back">
     Back to events
 </a>
 <div class="view-area">
+
     <div class="event-view">
+
         <div class="view-image-container">
+            <!-- If image attached to event, display, else display placeholder image -->
             <% if @event.picture.attached? %>
                 <%= image_tag(@event.picture, class: "view-image") %>
             <% else %>
                 <img class="view-image" src="<%= asset_path('No_Image.png')%>" width="150" height="150" alt="Picture"/>
             <% end %>
         </div>
+
         <div class="view-details">
+            <!-- Short event name -->
             <p class="view-title"><%= truncate(@event.title, :length => 50) %></p>
+
+            <!-- Organiser name -->
             <p class="view-organiser">Brought to you by <%= @event.organiser.firstName %> <%= @event.organiser.surname %></p>
+
+            <!-- Formatted date time to be more human readable -->
             <p class="view-date"><%= @event.dateTime.strftime("%a, %b %d, %H:%M") %></p>
+
             <p class="view-location"><%= @event.location %></p>
             <p class="view-category"><%= @event.category %></p>
             <p class="view-description"><%= @event.description %></p>
         </div>
+
         <div class="event-button-collection">
 
+            <!-- If the user is not the organiser or not already signed up show the buy button with price -->
             <% if current_user && @event.organiser != current_user && !@event.event_registrations.include?(current_user) %>
                 <button type="button" class="event-view-button"><%= link_to "Buy ticket for $", create_attendee_path(:user_id => current_user.id, :id => @event.id), method: :post , style: "text-decoration: none; color: black;"%><%= @event.price.to_f/100 %></button>
 
+            <!-- Else if user is not the organiser or is already signed up to the event show the remove from events button -->
             <%elsif  current_user && @event.organiser != current_user && @event.event_registrations.include?(current_user) %>
                 <button type="button" class="event-view-button"><%= link_to "Remove from my events", destroy_attendee_path(:user_id => current_user.id, :id => @event.id), method: :delete, data: { confirm: "Please confirm if you would like to remove this from your events" }, style: "text-decoration: none; color: black;"%></button>
 
             <% end %>
 
-            
+            <!-- If the user is the event organise, offer options to edit and delete the event -->
             <% if current_user == @event.organiser %>
                 <% puts @event.id %>
                 <button type="button" class="event-view-button"><%= link_to "Edit event", edit_event_path(@event.id) , style: "text-decoration: none; color: black;"%></button>
+
+                <!-- User will get a prompt to confirm they want to cancel the event -->
                 <button type="button" class="event-view-button"><%= link_to "Cancel event", event_path(@event.id), method: :delete, data: { confirm: "Are you sure you want to cancel this event? This action is not reversable" } , style: "text-decoration: none; color: black;"%></button>
             <% else %>
                 
@@ -40,8 +57,12 @@
 
         </div>
         <div class="view-details">
+            <!-- Only the event organised can see the list of attendees for an event -->
             <% if current_user == @event.organiser %>
+
                 <p class="view-attendees-title">Attendees</p>
+
+                <!-- IF the event has no attendees, show message -->
                 <%if @event.event_registrations.count == 0 %>
                     <p class="view-attendees-name">This event has no registrations so far.</p>
                 <% else %>

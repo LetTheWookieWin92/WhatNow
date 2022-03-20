@@ -1,13 +1,16 @@
 class EventsController < ApplicationController
 
+    # Present all available events to user (needs refactoring to present available events in sets of 10)
     def index
         @events = Event.all
     end
 
+    # Create a new event
     def new
         @event = current_user.organised_events.build
     end
 
+    # Create a new event and prompt user
     def create
         @event = current_user.organised_events.build(event_params)
 
@@ -21,14 +24,17 @@ class EventsController < ApplicationController
         
     end
 
+    # Event detail view
     def show
         @event= Event.find(params[:id])
     end
 
+    # Organise event form containing existing data
     def edit
         @event= Event.find(params[:id])
     end
 
+    # Make updates to event 
     def update
         @event= Event.find(params[:id])
         if @event.update(event_params)
@@ -42,6 +48,7 @@ class EventsController < ApplicationController
         end
     end
 
+    # If user is organiser, delete the event (and dependents)
     def destroy
         @event= Event.find(params[:id])
         if @event.organiser != current_user
@@ -56,6 +63,7 @@ class EventsController < ApplicationController
 
     private
 
+    # Convenience method to pass in all event attributes
     def event_params
         params.require(:event).permit(
             :title,

@@ -1,4 +1,5 @@
 class Attendee < ApplicationRecord
-  belongs_to :user
-  belongs_to :event
+    # Each attendee belongs to a single user and single event
+    belongs_to :user
+    belongs_to :event
 end

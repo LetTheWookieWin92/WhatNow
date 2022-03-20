@@ -1,7 +1,10 @@
+<!-- Partial nav bar to be used throughout application -->
 <nav class="nav-all">
     <a href="<%= root_path %>">
         <img src="<%= asset_path('Logo.png')%>" width="200" alt="logo">
     </a>
+
+    <!-- Different options depending on whether user is signed in -->
     <% if user_signed_in? %>
         <nav>
             <div class="nav-button-box">

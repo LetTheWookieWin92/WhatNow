@@ -1,5 +1,7 @@
+<!-- Style -->
 <%= stylesheet_link_tag 'forms' %>
 
+<!-- Organise an event form -->
 <%= form_for(@event) do |f|  %>
 
     <div class="view-area">
@@ -27,12 +29,13 @@
                     <%= f.label "Maximum capacity" %> <br />
                     <%= f.number_field :capacity, :min => 1, :step => 1, require: true %>
                 </div>
-
+            
                 <div class="field form-field">
                     <%= f.label "Price" %> <br />
                     <%= f.number_field :price, :step => 1, require: true %>
                 </div>
 
+                <!-- Hard-coded event categories not ideal, time permitting create model containing categories that can be linked to users and events -->
                 <div class="field form-field">
                     <%= f.label "Categories" %> <br />
                     <%= f.select :category, ['Corporate', 'Fundraising', 'Conference', 'Class / Workshop', 'Sport', 'Fandom', 'Festival / Fair', 'Food / Drink', 'Networking', 'Hackathon', 'Awards / Competition', 'Party', 'VIP'] , require: true %>
@@ -43,6 +46,7 @@
                     <%= f.text_field :description, require: true, class:"form-field-large-input" %>
                 </div>
 
+                <!-- Image upload to AWS -->
                 <div class="field form-field">
                     <%= f.label "Image" %> <br />
                     <%= f.file_field :picture, accept: 'image/png, image/jpg, image/jpeg' %>

@@ -1,5 +1,10 @@
+<!-- Event card container -->
 <div class="event-card">
+
+    <!-- Event image -->
     <div class="card-image-container">
+
+        <!-- If no image has been supplied, show placeholder, else show attached image -->
         <% if event.picture.attached? %>
             <%= image_tag event.picture, class: "card-image" %>
         <% else %>
@@ -7,13 +12,25 @@
         <% end %>
         
     </div>
+    <!-- Event text contents -->
     <div class="card-title">
+
+        <!-- Show first 25 characters of title in case title is too long for the card -->
         <p class="event-title"><%= truncate(event.title, :length => 25) %></p>
+
+        <!-- Grab organiser name from event -->
         <p class="event-organiser"><%= event.organiser.firstName %> <%= event.organiser.surname %></p>
+
+        <!-- Format date to be more human readable -->
         <p class="event-date"><%= event.dateTime.strftime("%a, %b %d, %H:%M") %></p>
+
+        <!-- Show firs 40 characters of location in case it's too long for the card -->
         <p class="event-location"><%= truncate(event.location, :length => 40) %></p>
+
         <p class="event-category"><%= event.category %></p>
+
     </div>
+    <!-- Button for user to navigate to full event details -->
     <button type="button" class="button-block"><%= link_to "View event", event_path(event.id) , style: "text-decoration: none; color: black;"%></button>
 
 </div>

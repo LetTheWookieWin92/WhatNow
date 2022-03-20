@@ -1,11 +1,15 @@
+<!-- Style -->
 <%= stylesheet_link_tag 'profile' %>
 
 <div class="view-area">
     <div class="profile-view">
 
+        <!-- Simple view showing basic user details -->
         <div class="view-details">
             <p class="view-title"><%= current_user.firstName %> <%= current_user.surname %></p>
             <p class="view-subtitle">Your events</p>
+
+            <!-- check if user has organised any events, if not show message, else display all -->
             <% if current_user.organised_events.count == 0 %>
                 <p style="margin-top: 10px;">You have not organised any events</p>
             <% else %>
@@ -15,6 +19,7 @@
                 <% end %>
             <% end %>
             
+            <!-- check if user is registered for any events, if not show message, else display all -->
             <p class="view-subtitle">Events you've registered for</p>
             <% if current_user.event_attendances.count == 0 %>
                 <p style="margin-top: 10px;">You have not registered for any events</p>

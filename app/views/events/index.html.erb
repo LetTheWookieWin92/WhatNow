@@ -1,14 +1,19 @@
+<!-- Style -->
 <%= stylesheet_link_tag 'events' %>
 
-
+<!-- Responsive layout for event cards -->
 <section class="card-collection">
+    <!-- If there are no upcoming events, display message -->
     <% if @events.count == 0 %>
         <p style="margin-top: 30px;">There are no events coming up</p>
     <% else %>
         <h1 class="page-title">Coming up</h1>
+
+        <!-- For every event, display on homepage -->
         <% upcomingEvents = @events.select {|event| event.dateTime >= Time.now } %>
         <% upcomingEvents.each do |event| %>
             <%= render 'event_card', :event => event, :current_user => current_user %>
         <% end %>
     <% end %>
 </section>
+
